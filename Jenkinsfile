@@ -28,8 +28,9 @@ pipeline {
                 branch 'master'
             }
               steps { 
-                  docker.withServer('https://hub.docker.com/', 'dockerhub')
+                  docker.withServer('https://hub.docker.com/', 'dockerhub'){
                   sh "./upload_docker.sh"
+                  }
               }
          } 
          stage('Security Scan') {
