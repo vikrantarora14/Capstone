@@ -23,7 +23,7 @@ pipeline {
                   aquaMicroscanner imageName: 'alpine:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
               }
          }         
-         stage('Upload to AWS') {
+         /*stage('Upload to AWS') {
              when {
                 branch 'production'
             }
@@ -33,6 +33,6 @@ pipeline {
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'module2lesson5s3')
                   }
               }
-         }
+         }*/
      }
 }
