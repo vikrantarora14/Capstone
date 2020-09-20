@@ -24,15 +24,14 @@ pipeline {
               }
          } 
          stage('upload Docker') {
-             when {
-                branch 'master'
-            }
               steps { 
-                  docker.withServer('https://hub.docker.com/', 'dockerhub'){
+                  script {
+                  withDockerRegistry([ credentialsId: "dockerhub", url: "" ]){
                   sh "./upload_docker.sh"
                   }
+                  }
               }
-         } 
+         }
          stage('Security Scan') {
              when {
                 branch 'staging'
