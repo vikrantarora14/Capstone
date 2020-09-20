@@ -15,12 +15,20 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
-         stage('Docker') {
+         stage('run Docker') {
              when {
                 branch 'master'
             }
               steps { 
                   sh "./run_docker.sh"
+              }
+         } 
+         stage('upload Docker') {
+             when {
+                branch 'master'
+            }
+              steps { 
+                  sh "./upload_docker.sh"
               }
          } 
          stage('Security Scan') {
