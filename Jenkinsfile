@@ -15,6 +15,14 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
+         stage('Docker') {
+             when {
+                branch 'master'
+            }
+              steps { 
+                  ./run_docker.sh
+              }
+         } 
          stage('Security Scan') {
              when {
                 branch 'staging'
