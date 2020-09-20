@@ -20,7 +20,7 @@ pipeline {
                 branch 'master'
             }
               steps { 
-                  ./run_docker.sh
+                  sh "./run_docker.sh"
               }
          } 
          stage('Security Scan') {
