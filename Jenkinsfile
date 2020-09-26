@@ -45,7 +45,7 @@ pipeline {
                 branch 'master'
             }
               steps {
-                  withAWS(region:'us-east-2',credentials:'aws-static') {
+                  withAWS(region:'us-west-2',credentials:'aws-static') {
                   sh 'echo "Uploading content with AWS creds"'
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'module2lesson5s3')
                   }
