@@ -62,5 +62,16 @@ pipeline {
                   }
               }
          }
+          stage('run kubernetes') {
+              steps { 
+                  withAWS(region:'us-east-2',credentials:'aws-static'){
+                  script {
+                  withDockerRegistry([ credentialsId: "dockerhub", url: "" ]){
+                  sh "./run_kubernetes.sh"
+                  }
+                  }
+                  }
+              }
+         }
      }
 }
