@@ -45,9 +45,20 @@ pipeline {
                 branch 'master'
             }
               steps {
-                  withAWS(region:'us-west-2',credentials:'aws-static') {
+                  withAWS(region:'us-east-2',credentials:'aws-static') {
                   sh 'echo "Uploading content with AWS creds"'
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'module2lesson5s3')
+                  }
+              }
+         }
+         stage('Create kube config file') {
+             when {
+                branch 'master'
+            }
+              steps {
+                  withAWS(region:'us-east-2',credentials:'aws-static') {
+                  sh 'echo "creating config file"'
+                      awseks --region us-east-2 update-kubeconfig --name capstonecluster
                   }
               }
          }

@@ -20,4 +20,4 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward capstoneindex 8080:80
+kubectl port-forward capstoneindex 9000:80
