@@ -12,7 +12,8 @@ dockerpath="vikrantarora14/testcapstone"
 kubectl run capstoneindex\
     --generator=run-pod/v1\
     --image=$dockerpath
-    --port=80 --labels app=capstoneindex
+    --expose
+    --port=9000 --labels app=capstoneindex
 
 # Step 3:
 # List kubernetes pods
@@ -20,4 +21,4 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward capstoneindex 9000:80
+#kubectl port-forward capstoneindex 9000:80
