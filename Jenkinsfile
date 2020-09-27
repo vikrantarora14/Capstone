@@ -58,6 +58,7 @@ pipeline {
               steps {
                   withAWS(region:'us-east-2',credentials:'aws-static') {
                   sh "aws eks --region us-east-2 update-kubeconfig --name capstonecluster"
+                  sh "kubectl set image deployments/projectcapstoneindex projectcapstoneindex=vikrantarora14/projectcapstoneindex:latest"
                   sh "kubectl apply -f deployment.yml"
                   sh "kubectl get nodes"
                   sh "kubectl get deployment"
