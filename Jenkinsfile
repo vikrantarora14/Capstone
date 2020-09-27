@@ -58,7 +58,7 @@ pipeline {
               steps {
                   withAWS(region:'us-east-2',credentials:'aws-static') {
                   sh "aws eks --region us-east-2 update-kubeconfig --name capstonecluster"
-                  sh "kubectl apply -f deployment.yaml"
+                  sh "kubectl apply -f deployment.yml"
                   sh "kubectl get nodes"
                   sh "kubectl get deployment"
                   sh "kubectl get pod -o wide"
