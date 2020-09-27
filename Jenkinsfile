@@ -15,7 +15,7 @@ pipeline {
                   sh 'tidy -q -e *.html'
               }
          }
-         stage('run Docker') {
+         stage('Build Docker Image') {
              when {
                 branch 'master'
             }
@@ -23,7 +23,7 @@ pipeline {
                   sh "./run_docker.sh"
               }
          } 
-         stage('upload Docker') {
+         stage('upload image to Dockerhub') {
               steps { 
                   script {
                   withDockerRegistry([ credentialsId: "dockerhub", url: "" ]){
@@ -32,15 +32,15 @@ pipeline {
                   }
               }
          }
-         stage('Security Scan') {
+        /* stage('Security Scan') {
              when {
                 branch 'staging'
             }
               steps { 
                   aquaMicroscanner imageName: 'alpine:latest', notCompliesCmd: 'exit 1', onDisallowed: 'fail', outputFormat: 'html'
               }
-         }         
-         stage('Upload to AWS') {
+         }   */      
+        /* stage('Upload to AWS') {
              when {
                 branch 'master'
             }
@@ -50,8 +50,8 @@ pipeline {
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'module2lesson5s3')
                   }
               }
-         }
-         stage('Create kube config file') {
+         }*/
+         stage('Deploy to AWS Kubernetes Cluster') {
              when {
                 branch 'master'
             }
