@@ -7,6 +7,6 @@ spec:
   selector:
     app: web
   ports:
-    - nodePort: 31479
-      port: 9000
-      targetPort: 9000
+    - nodePort: 9000
+      port: 80
+      targetPort: 80
